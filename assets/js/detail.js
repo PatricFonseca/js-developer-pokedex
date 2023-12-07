@@ -8,9 +8,6 @@ pokeApi.getPokemoDetailById = (id) => {
 const id = new URLSearchParams(window.location.search).get("id");
 const pokemon = new Pokemon();
 pokeApi.getPokemoDetailById(id).then((pokemonReq) => {
-  // convertPokeApiDetailToPokemon(pokemon);
-  console.log(pokemonReq.stats);
-
   pokemonReq.stats.map((stat) => {
     pokemon.stats.push({
       value: stat.base_stat,
@@ -21,11 +18,35 @@ pokeApi.getPokemoDetailById(id).then((pokemonReq) => {
   pokemon.number = pokemonReq.id;
   pokemon.name = pokemonReq.name;
 
+  const types = pokemonReq.types.map((typeSlot) => typeSlot.type.name);
+  const [type] = types;
+
+  pokemon.types = types;
+  pokemon.type = type;
+
   convertStatsToList(pokemon.stats);
 
-  document.querySelector("img").src = pokemon.photo;
+  document.getElementById("img_pokemon").src = pokemon.photo;
   document.getElementById("name").innerText = pokemon.name;
   document.getElementById("number").innerText = "#" + pokemon.number;
+  document.getElementById("types").innerHTML = ` ${pokemon.types
+    .map((type) => `<li class="type ${type}">${type}</li>`)
+    .join("")}`;
+
+  document.getElementsByClassName("content")[0].classList.add(pokemon.type);
+
+  pokemon.stats.map((stat) => {
+    const statGoodOrBad = stat.value > 50 ? "good" : "bad";
+    const div = document.createElement("div");
+    div.className = "stats__wrapper";
+
+    // span.style.width = `${stat.value}%`;
+    document.getElementById("stats__progress").appendChild(div);
+    div.innerHTML = ` 
+    <div class="stats__progress-bar">
+      <span style="width:${stat.value}%" class="${statGoodOrBad}"></span>
+    </div>`;
+  });
 });
 
 // function convertPokeApiDetailToPokemon(pokeDetail) {
@@ -33,8 +54,6 @@ pokeApi.getPokemoDetailById(id).then((pokemonReq) => {
 //   pokemon.number = pokeDetail.id;
 //   pokemon.name = pokeDetail.name;
 // }
-
-console.log(pokemon);
 
 convertStatsToList = (stats) => {
   const list = document.getElementById("stats");

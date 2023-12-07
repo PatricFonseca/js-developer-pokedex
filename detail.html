@@ -32,17 +32,26 @@
   <body>
     <section class="content">
       <section class="header">
-        <div><-Voltar</div>
+        <div>
+          <button class="button__back" type="button" onclick="history.back()">
+            <img
+              width="30"
+              height="30"
+              src="https://img.icons8.com/ios-glyphs/30/ffffff/circled-left-2.png"
+              alt="circled-left-2"
+            />
+          </button>
+        </div>
         <h1 id="name" class="name">Bulbasaur</h1>
-        <span id="number">#001</span>
-        <ul class="types">
-          <li class="type">grass</li>
-          <li class="type">Poison</li>
+        <span id="number"></span>
+        <ul id="types" class="types">
+          <!-- <li class="type">grass</li> -->
+          <!-- <li class="type">Poison</li> -->
         </ul>
       </section>
 
       <section class="detail">
-        <img src="" alt="" />
+        <img id="img_pokemon" src="" alt="" />
 
         <div class="list__base_stats">
           <ul id="stats" class="stats">
@@ -57,23 +66,35 @@
             <!-- List of values -->
           </ul>
 
-          <div class="stats__progress">
-            <div class="progress">
-              <div class="progress-container">
-                <div class="progress-bar"></div>
+          <div id="stats__progress" class="stats__progress">
+            <!-- <div class="stats__wrapper">
+              <div class="stats__progress-bar">
+                <span class="good" />
+              </div>
+            </div> -->
+
+            <!-- <div class="stats__wrapper">
+              <div class="stats__progress-bar">
+                <span />
               </div>
             </div>
-            <div class="progress">
-              <div class="progress-container">
-                <div class="progress-bar"></div>
+
+            <div class="stats__wrapper">
+              <div class="stats__progress-bar">
+                <span />
               </div>
             </div>
-            <div class="progress-container">
-              <div class="progress-bar"></div>
+            <div class="stats__wrapper">
+              <div class="stats__progress-bar">
+                <span />
+              </div>
             </div>
-            <div class="progress-container">
-              <div class="progress-bar"></div>
-            </div>
+            <div class="stats__wrapper">
+              <div class="stats__progress-bar">
+                <span />
+              </div>
+            </div> -->
+
             <!-- <li></li>
             <li></li>
             <li></li>
@@ -81,8 +102,8 @@
           </div>
         </div>
 
-        <h3>Type defenses</h3>
-        <p>The effectivess of each</p>
+        <!-- <h3>Type defenses</h3>
+        <p>The effectivess of each</p> -->
       </section>
     </section>
     <script src="/assets/js/pokemon-model.js"></script>
